@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knacke den Code</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-image: url('Bild.png'); /* Verwende das generierte Bild */
+      background-size: cover;
+      background-repeat: no-repeat; /* Keine Wiederholung des Bildes */
+      background-position: center; /* Bild zentrieren */
+      color: #002366; /* Dunkelblaue Schriftfarbe */
+    }
+
+    .header {
+      background-color: rgba(255, 255, 255, 0.8); /* Heller Hintergrund für die Überschrift */
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      max-width: 800px; /* Kasten schmaler */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    /* Farbliche Gestaltung der Buchstaben */
+    .letter-h { color: #c54545; } /* Orange */
+    .letter-a { color: #369b48; } /* Grün */
+    .letter-p { color: #4055b4; } /* Blau */
+    .letter-y { color: #ef9d19; } /* Gelb */
+    .letter-b { color: #d04839; } /* Rot */
+    .letter-i { color: #9b59b6; } /* Lila */
+    .letter-r { color: #368cc5; } /* Blau */
+    .letter-t { color: #f69540; } /* Orange */
+    .letter-d { color: #a54d8b; } /* Türkis */
+    .letter-x { color: #51ad9a; } /* Grün */
+    .letter-e { color: #36749d; } /* Hellblau */
+    .letter-l { color: #dc5151; } /* Dunkellila */
+
+    p {
+      color: #002366; /* Dunkelblaue Schrift */
+      font-size: 1.2em;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.8); /* Helle, leicht transparente Kästen */
+      color: #002366;
+      border: 2px solid #d3d3d3;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      margin-bottom: 0;
+    }
+
+    .riddle-number {
+      display: block; /* Damit die Zahl auf einer eigenen Zeile steht */
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      background-color: #ffc107;
+      color: #002366;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #e6ac00;
+    }
+
+    input[type="text"] {
+      background-color: #f0f0f0;
+      color: #002366;
+      border: 1px solid #002366;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container text-center mt-5">
+    <!-- Header mit schmalem, hellem Kasten für Überschrift -->
+    <div class="header">
+      <h1>
+        <span class="letter-h">H</span><span class="letter-a">a</span><span class="letter-p">p</span><span class="letter-p">p</span><span class="letter-y">y</span> 
+        <span class="letter-b">B</span><span class="letter-i">i</span><span class="letter-r">r</span><span class="letter-t">t</span><span class="letter-h">h</span><span class="letter-d">d</span><span class="letter-a">a</span><span class="letter-y">y</span> 
+        <span class="letter-a">A</span><span class="letter-l">l</span><span class="letter-e">e</span><span class="letter-x">x</span>!
+      </h1>
+      <h2>Knacke den Code</h2>
+      <p>Gib den richtigen Code im Schloss ein!</p>
+    </div>
+
+    <!-- Rätsel Hinweise -->
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <!-- Rätsel 1 -->
+        <div class="card">
+          <div class="card-body">
+            <p><span class="riddle-number">Rätsel 1:</span>689<br>Eine Nummer ist korrekt und gut positioniert.</p>
+          </div>
+        </div>
+
+        <!-- Rätsel 2 -->
+        <div class="card">
+          <div class="card-body">
+            <p><span class="riddle-number">Rätsel 2:</span>926<br>Zwei Nummern sind korrekt, aber falsch positioniert.</p>
+          </div>
+        </div>
+
+        <!-- Rätsel 3 -->
+        <div class="card">
+          <div class="card-body">
+            <p><span class="riddle-number">Rätsel 3:</span>641<br>Eine Nummer ist korrekt, aber falsch positioniert.</p>
+          </div>
+        </div>
+
+        <!-- Rätsel 4 -->
+        <div class="card">
+          <div class="card-body">
+            <p><span class="riddle-number">Rätsel 4:</span>872<br>Eine Nummer ist korrekt, aber falsch positioniert.</p>
+          </div>
+        </div>
+
+        <!-- Rätsel 5 -->
+        <div class="card">
+          <div class="card-body">
+            <p><span class="riddle-number">Rätsel 5:</span>738<br>Nichts ist korrekt.</p>
+          </div>
+        </div>
+
+        <!-- Eingabefeld für den Code -->
+        <input type="text" id="codeInput" class="form-control mb-3" placeholder="Mal sehen ob du richtig liegst">
+
+        <!-- Button zum Überprüfen des Codes -->
+        <button class="btn btn-primary" onclick="checkCode()">Trau dich</button>
+
+        <!-- Bereich für Rückmeldungen -->
+        <div id="result" class="mt-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript zur Überprüfung des Codes -->
+  <script>
+    function checkCode() {
+      var code = document.getElementById("codeInput").value;
+      var result = document.getElementById("result");
+
+      if (code === "219") {
+        result.innerHTML = '<div class="alert alert-success">Genialität in ihrer reinsten Form! Du hast den Code geknackt!</div>';
+      } else {
+        result.innerHTML = '<div class="alert alert-danger">Keine Sorge, auch Genies machen Fehler! Versuch es nochmal!</div>';
+      }
+    }
+  </script>
+</body>
+</html>
